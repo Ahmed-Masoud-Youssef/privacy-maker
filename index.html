@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10152b">
+<meta name="description" content="Privacy Maker - أنشئ سياسة خصوصية وشروط وأحكام لتطبيقك بسهولة.">
+<title>Privacy Maker | صانع السياسات الذكي</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c32;--text:#f4f6ff;--muted:#aab4ce;--gold:#c8a96b;--line:#2b3653}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#1b2850 0%,var(--bg) 58%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.8}
+header{padding:20px 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12;gap:12px}
+.logo{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.logo span{color:var(--gold)}
+.tag{font-size:12px;border:1px solid #c8a96b55;border-radius:30px;padding:5px 12px;color:var(--gold)}
+main{max-width:1000px;margin:auto;padding:45px 18px 70px}
+.hero{text-align:center;margin-bottom:35px}
+.hero h1{font-size:clamp(30px,6vw,48px);line-height:1.3;margin:10px 0}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--muted);max-width:650px;margin:12px auto}
+.panel{background:#141c32eF;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 20px 60px #0003}
+h2{font-size:21px;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:14px;color:#e1e7f7;font-weight:600}
+input,select,textarea{width:100%;border:1px solid #34415f;background:#0d1427;color:white;border-radius:12px;padding:13px;font:inherit;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+textarea{min-height:95px;resize:vertical}
+select option{background:#141c32}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+button{border:0;border-radius:12px;padding:13px 20px;font:inherit;font-weight:750;cursor:pointer}
+.primary{background:linear-gradient(135deg,#e4c98b,#b48b43);color:#161526;flex:1}
+.secondary{background:#222d48;color:white;border:1px solid #3b4968}
+button:disabled{opacity:.55;cursor:wait}
+.note{color:var(--muted);font-size:12px;margin-top:14px}
+#status{margin-top:18px;color:var(--gold);white-space:pre-wrap}
+#resultPanel{display:none;margin-top:24px}
+#result{white-space:pre-wrap;overflow-wrap:anywhere;min-height:180px;background:#0c1325;border:1px solid var(--line);border-radius:14px;padding:18px;line-height:2}
+footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid #ffffff12;font-size:13px}
+@media(max-width:600px){header{padding:16px}.logo{font-size:19px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:17px}main{padding-top:30px}.actions button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Privacy <span>Maker</span></div>
+  <div class="tag">AI DOCUMENT STUDIO</div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="tag">من فكرتك إلى مستند احترافي</div>
+  <h1>أنشئ مستندات تطبيقك<br><span>بذكاء وسهولة</span></h1>
+  <p>أنشئ مسودة سياسة خصوصية أو شروط وأحكام مخصصة لتطبيقك، وراجعها قبل النشر.</p>
+</section>
+
+<section class="panel">
+<h2>✦ بيانات مشروعك</h2>
+<form id="makerForm">
+<div class="grid">
+  <div class="field">
+    <label for="kind">نوع المستند</label>
+    <select id="kind">
+      <option value="سياسة الخصوصية">سياسة الخصوصية</option>
+      <option value="الشروط والأحكام">الشروط والأحكام</option>
+      <option value="سياسة الخصوصية والشروط والأحكام">كلا المستندين</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="lang">لغة المستند</label>
+    <select id="lang">
+      <option value="العربية">العربية</option>
+      <option value="الإنجليزية">English - الإنجليزية</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="appName">اسم التطبيق أو الموقع *</label>
+    <input id="appName" maxlength="100" required placeholder="مثال: My App">
+  </div>
+  <div class="field">
+    <label for="owner">اسم المطور أو الشركة</label>
+    <input id="owner" maxlength="150" placeholder="اسم المطور">
+  </div>
+  <div class="field">
+    <label for="platform">المنصة</label>
+    <select id="platform">
+      <option>Android</option>
+      <option>موقع إلكتروني</option>
+      <option>Android وموقع إلكتروني</option>
+      <option>منصة أخرى</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="email">بريد التواصل (اختياري)</label>
+    <input id="email" type="email" maxlength="200" placeholder="support@example.com">
+  </div>
+  <div class="field full">
+    <label for="data">ما البيانات التي يجمعها التطبيق؟</label>
+    <textarea id="data" maxlength="2000" placeholder="مثال: لا يجمع بيانات شخصية، أو يجمع البريد الإلكتروني..."></textarea>
+  </div>
+  <div class="field full">
+    <label for="services">الإعلانات والخدمات الخارجية</label>
+    <textarea id="services" maxlength="2000" placeholder="مثال: AdMob، Firebase، التحليلات... اكتب ما تستخدمه فعلًا"></textarea>
+  </div>
+  <div class="field full">
+    <label for="extra">تفاصيل إضافية (اختياري)</label>
+    <textarea id="extra" maxlength="2000" placeholder="الدول المستهدفة، عمر المستخدمين، حذف البيانات، الاشتراكات..."></textarea>
+  </div>
+</div>
+
+<div class="actions">
+  <button id="generate" class="primary" type="submit">✦ إنشاء المستند بالذكاء الاصطناعي</button>
+</div>
+<p class="note">لا تدخل كلمات مرور أو بيانات سرية. سيتم إرسال تفاصيل النموذج إلى خدمة الذكاء الاصطناعي الخارجية عند الضغط على إنشاء.</p>
+</form>
+<div id="status" role="status"></div>
+</section>
+
+<section class="panel" id="resultPanel">
+<h2>المستند الذي تم إنشاؤه</h2>
+<div id="result" dir="auto"></div>
+<div class="actions">
+<button class="secondary" id="copy" type="button">نسخ المستند</button>
+<button class="secondary" id="download" type="button">تحميل TXT</button>
+</div>
+<p class="note">راجع المستند وعدّله حسب ممارسات تطبيقك الفعلية والمتطلبات القانونية وسياسات المنصة قبل نشره. الإنشاء بالذكاء الاصطناعي لا يضمن الامتثال القانوني.</p>
+</section>
+</main>
+
+<footer>Privacy Maker © 2026 · صُمم لتسهيل إعداد مستندات التطبيقات</footer>
+
+<script>
+const API_URL = "https://us-central1-conquer-apps-2ad61.cloudfunctions.net/prod/api.live";
+const form = document.getElementById("makerForm");
+const generateBtn = document.getElementById("generate");
+const statusBox = document.getElementById("status");
+const resultPanel = document.getElementById("resultPanel");
+const resultBox = document.getElementById("result");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const appName = document.getElementById("appName").value.trim();
+  if (!appName) return;
+
+  const kind = document.getElementById("kind").value;
+  const lang = document.getElementById("lang").value;
+  const owner = document.getElementById("owner").value.trim() || "غير محدد";
+  const email = document.getElementById("email").value.trim() || "غير محدد";
+  const platform = document.getElementById("platform").value;
+  const data = document.getElementById("data").value.trim() || "لم يحدد المستخدم البيانات التي يجمعها التطبيق";
+  const services = document.getElementById("services").value.trim() || "لم يحدد المستخدم الخدمات الخارجية";
+  const extra = document.getElementById("extra").value.trim() || "لا توجد تفاصيل إضافية";
+
+  const prompt = `
+أنت مساعد متخصص في صياغة مسودات مستندات التطبيقات.
+أنشئ ${kind} باللغة ${lang}.
+اسم التطبيق: ${appName}
+المطور: ${owner}
+المنصة: ${platform}
+بريد التواصل: ${email}
+البيانات التي ذكر المستخدم أنه يجمعها: ${data}
+الخدمات الخارجية التي ذكرها: ${services}
+تفاصيل إضافية: ${extra}
+
+التعليمات:
+- أنشئ مستندًا منظمًا بعناوين واضحة وفقرات مفهومة.
+- لا تدّعِ أن التطبيق يجمع أو لا يجمع بيانات أو يستخدم خدمة ما دون دليل من البيانات المقدمة.
+- عند نقص المعلومات، ضع تنبيهًا واضحًا بعنوان "معلومات يجب على مالك التطبيق استكمالها".
+- اشرح جمع البيانات واستخدامها ومشاركتها والاحتفاظ بها وحذفها وحقوق المستخدم والأمان والتواصل، عندما تكون هذه الموضوعات ذات صلة.
+- لا تخترع عنوان شركة أو بريدًا أو ضمانات قانونية.
+- اجعل المستند مناسبًا للمراجعة قبل النشر، ولا تدّعِ ضمان الامتثال للقانون أو سياسات Google Play.
+- أخرج نص المستند فقط، بتنسيق واضح.
+`;
+
+  generateBtn.disabled = true;
+  statusBox.textContent = "جارٍ الاتصال بخدمة الذكاء الاصطناعي...";
+  resultPanel.style.display = "none";
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        n: 1,
+        prompt: prompt,
+        temperature: 0.4,
+        max_tokens: 3500
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("الخدمة ردّت برمز HTTP " + response.status);
+    }
+
+    const json = await response.json();
+    const content = json?.choices?.[0]?.message?.content;
+
+    if (typeof content !== "string" || !content.trim()) {
+      throw new Error("استجابة الخدمة لا تطابق التنسيق المتوقع.");
+    }
+
+    resultBox.textContent = content.trim();
+    resultPanel.style.display = "block";
+    statusBox.textContent = "تم إنشاء المسودة. راجعها قبل استخدامها.";
+    resultPanel.scrollIntoView({behavior:"smooth",block:"start"});
+  } catch (err) {
+    console.error(err);
+    statusBox.textContent =
+      "تعذر إنشاء المستند. قد تكون الخدمة متوقفة أو قد يمنع المتصفح الاتصال بها (CORS)، أو قد يكون تنسيق الرد مختلفًا. جرّب لاحقًا بعد التحقق من الخدمة.";
+  } finally {
+    generateBtn.disabled = false;
+  }
+});
+
+document.getElementById("copy").addEventListener("click", async function() {
+  try {
+    await navigator.clipboard.writeText(resultBox.textContent);
+    statusBox.textContent = "تم نسخ المستند.";
+  } catch (e) {
+    statusBox.textContent = "تعذر النسخ التلقائي. اضغط مطولًا على النص وحدده ثم انسخه.";
+  }
+});
+
+document.getElementById("download").addEventListener("click", function() {
+  const blob = new Blob(["\uFEFF" + resultBox.textContent], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "privacy-maker-document.txt";
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+</script>
+</body>
+</html>
